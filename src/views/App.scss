@@ -1,0 +1,24 @@
+
+$main-color: #f1f1f1;
+$button-color: #f3ed93; 
+$hover-button: #8ee09c;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $main-color;
+}
+
+.main-block {
+  max-width: 1140px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import './pages/LoginPage/styles.scss';
+@import './pages/UsersList/styles.scss';

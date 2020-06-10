@@ -1,0 +1,42 @@
+.list-block {
+    width: 100%;
+    text-align: center;
+    .list-block-header {
+        display: flex;
+        justify-content: space-between;
+    }
+    .user-list {
+        list-style: none;
+        padding-left: 0;
+        h2 {
+            font-size: 28px;
+        }
+        .user-list-head {
+            display: flex;
+            padding: 0 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            background: #ffffff;
+            padding: 10px 20px;
+            border-bottom: 1px solid $main-color;
+            &:hover {
+                background: transparent;
+                cursor: pointer;
+            }
+        }
+        p {
+            width: calc(100% / 3);
+            text-align: left;
+            &:nth-child(even) {
+                text-align: center;
+            }
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+}
