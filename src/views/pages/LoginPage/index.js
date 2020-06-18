@@ -1,23 +1,13 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { loginUser } from '../../../actions'
 
-const mapStateToProps = (state) => {
-    return {
-        loginState: state.loginReducer
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loginUser: (user) => dispatch(loginUser(user))
-    }
-}
-
-
 const LoginPage = (props) => {
+    const dispatch = useDispatch()
+    const { authOk, authErr } = useSelector(state => state.loginReducer)
+
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
 
@@ -31,10 +21,9 @@ const LoginPage = (props) => {
 
     const submitButton = (e) => {
         e.preventDefault()
-        props.loginUser({ username, password })
+        
+        dispatch(loginUser({ username, password }))
     }
-
-    const { authOk, authErr } = props.loginState
 
     if (authOk) {
         return <Redirect to='/login_page' />
@@ -77,4 +66,4 @@ const LoginPage = (props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default LoginPage

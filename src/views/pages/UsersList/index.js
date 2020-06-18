@@ -1,31 +1,19 @@
 import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { getUsers, logoutUser } from '../../../actions'
 import Loader from '../../components/Loader'
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.getUsersReducer,
-        isLoading: state.getUsersReducer
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logoutUser: () => dispatch(logoutUser())
-    }
-}
-
 const UsersList = (props) => {
     const dispatch = useDispatch()
+    const { users, isLoading } = useSelector(state => state.getUsersReducer)
 
     useEffect(() => {
         const token = localStorage.getItem('token')
         token && dispatch(getUsers())
     }, [dispatch])
 
-    const { users, isLoading } = props.users
 
     const getAllUsers = () => {
         return (
@@ -57,7 +45,7 @@ const UsersList = (props) => {
     }
 
     const logoutCurrent = () => {
-        props.logoutUser()
+        dispatch(logoutUser())
 
         return (
             <Redirect
@@ -99,4 +87,4 @@ const UsersList = (props) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersList)
+export default UsersList
